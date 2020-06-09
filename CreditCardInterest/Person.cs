@@ -8,5 +8,7 @@ namespace CreditCardInterest
     {
         public int Id { get; set; }
         public List<Wallet> walletList { get; set; }
+        public double MonthlyInterest { get; set; }
+
     }
 }

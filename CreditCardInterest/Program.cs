@@ -8,7 +8,24 @@ namespace CreditCardInterest
 {
     public class Program
     {
-        public class Visa : CreditCard {
+        static void Main(string[] args)
+        {
+            
+            OutputInterestToConsole outputInterestToConsole = new OutputInterestToConsole();
+            foreach (Person person in createPersonList())
+            {
+                if(person.Id == 1)
+                    outputInterestToConsole.writeInterestValuesToConsole(person, true, false, true);
+                if (person.Id == 2)
+                    outputInterestToConsole.writeInterestValuesToConsole(person, true, true, false);
+                if (person.Id == 3)
+                    outputInterestToConsole.writeInterestValuesToConsole(person, true, true, false);
+                if (person.Id == 4)
+                    outputInterestToConsole.writeInterestValuesToConsole(person, true, true, false);
+            }
+        }
+        public class Visa : CreditCard
+        {
             public CreditCard CreateCreditCard(double balance)
             {
                 return new CreditCard() { InterestRate = .1, Balance = balance, Name = "Visa" };
@@ -21,14 +38,16 @@ namespace CreditCardInterest
                 return new CreditCard() { InterestRate = .05, Balance = balance, Name = "MC" };
             }
         };
-        public class Discover : CreditCard {
+        public class Discover : CreditCard
+        {
             public CreditCard CreateCreditCard(double balance)
             {
                 return new CreditCard() { InterestRate = .01, Balance = balance, Name = "Discover" };
             }
         };
-        static void Main(string[] args)
+        public static List<Person> createPersonList()
         {
+            List<Person> personList = new List<Person>();
             Visa visa = new Visa();
             MC mc = new MC();
             Discover discover = new Discover();
@@ -88,16 +107,17 @@ namespace CreditCardInterest
                     Id = 1,
                     CreditCards = new List<CreditCard>() {
                         mc.CreateCreditCard(100),
-                        visa.CreateCreditCard(100)                        
+                        visa.CreateCreditCard(100)
                     }
                     }
                 }
             };
-            OutputInterestToConsole outputInterestToConsole = new OutputInterestToConsole();
-            outputInterestToConsole.writeInterestValuesToConsole(person1, true, false, true);
-            outputInterestToConsole.writeInterestValuesToConsole(person2, true, true, false);
-            outputInterestToConsole.writeInterestValuesToConsole(person3, true, true, false);
-            outputInterestToConsole.writeInterestValuesToConsole(person4, true, true, false);
+            personList.Add(person1);
+            personList.Add(person2);
+            personList.Add(person3);
+            personList.Add(person4);
+            return personList;
         }
+
     }
 }
